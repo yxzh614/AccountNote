@@ -1,17 +1,41 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+
+  <ion-navbar color="header">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="newBill()">
+        <ion-icon name="ios-add-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>我的账单</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-refresher (ionRefresh)="newBillPullDown($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉新建账单" refreshingSpinner="circles" refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list no-border *ngFor='let day of billList'>
+    <ion-list-header>
+      {{day.year}}年{{day.month}}月
+      <ion-note item-end>
+        {{day.total}}元
+      </ion-note>
+    </ion-list-header>
+
+    <ion-item *ngFor='let bill of day.dayList'>
+      <span class='day' item-start>{{bill.day}}</span>
+      <h2>{{bill.title}}</h2>
+      <p>{{bill.type}}</p>
+      <ion-note item-end>
+        {{bill.value}}元
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="newBillPullUp($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载中">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

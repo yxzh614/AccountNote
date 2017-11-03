@@ -1,5 +1,12 @@
 {
   "name": "AccountNote",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "script": [
+    "../node_modules/chart.js/dist/Chart.min.js",
+    "../node_modules/echarts/dist/echarts.min.js" 
+  ]
 }

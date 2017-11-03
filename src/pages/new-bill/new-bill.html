@@ -1,0 +1,50 @@
+<!--
+  Generated template for the NewBillPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="header">
+    <ion-title>新建账单</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="presentToast()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>金额</ion-label>
+        <ion-input type="number" [(ngModel)]="bMoney" name="bMoney"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>说明</ion-label>
+        <ion-input type="text" [(ngModel)]="bInfo" name="bMoney"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>种类</ion-label>
+        <ion-select name="bType" [(ngModel)]="gaming" interface="popover">
+          <ion-option *ngFor="let budget of budgets" value=[budget.type]>{{budget.type}}</ion-option>
+          <ion-option value="n64">零食</ion-option>
+          <ion-option value="ps">购物</ion-option>
+          <ion-option value="genesis">住房</ion-option>
+          <ion-option value="saturn">交通</ion-option>
+          <ion-option value="2">娱乐</ion-option>
+          <ion-option value="3">学习</ion-option>
+          <ion-option value="4">通讯</ion-option>
+          <ion-option value="5">医疗</ion-option>
+          <ion-option value="7">旅行</ion-option>
+          <ion-option value="6">投资</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>保存</button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>
