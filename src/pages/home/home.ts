@@ -28,19 +28,17 @@ export class HomePage {
   getNextDayBillList(monthParse) {
     let date = new Date();
     let year = date.getFullYear();
-    let month = date.getMonth();
-    while(monthParse) {
-      console.log(monthParse);
-      if(--month) {
-      } else {
-        year--;
-        month = 12
-      }
-      --monthParse;
+    let month = date.getMonth() + 1;
+    console.log(month);
+    month -= monthParse;
+    while(month < 0) {
+      month += 12;
+      year--;
     }
-    this.http.post('http://localhost/accountNote/getNextDayBillList',{
+    this.http.post('http://localhost/accountNoteBackEnd/getNextDayBillList',{
       year: year,
-      month: month
+      month: month,
+      username: window.localStorage.username
     })
     .map(res => res.json())
     .subscribe(res => {

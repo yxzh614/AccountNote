@@ -2,16 +2,16 @@
 
   <ion-navbar color="header">
     <ion-buttons start>
-        <button ion-button icon-only (click)="goSetting()">
-          <ion-icon name="ios-settings-outline"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button icon-only (click)="goSetting()">
+        <ion-icon name="ios-settings-outline"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>个人中心</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only (click)="newBudget()">
-          <ion-icon name="ios-add-outline"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button icon-only (click)="newBudget()">
+        <ion-icon name="ios-add-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -19,52 +19,19 @@
 
 <ion-content>
   <ion-list no-border>
-    
-        <ion-list-header>
-          个人预算
-          <ion-note item-end>
-            1231231131.00元
-          </ion-note>
-        </ion-list-header>
-    
-        <ion-item>
-          <ion-icon name='ios-pizza-outline' item-start></ion-icon>
-          <h2>通讯费</h2>
-          <ion-note item-end>
-            -7.00元
-          </ion-note>
-        </ion-item>
-    
-        <ion-item>
-            <ion-icon name='ios-pizza-outline' item-start></ion-icon>
-            <h2>餐饮</h2>
-            <ion-note item-end>
-              -7.00元
-            </ion-note>
-          </ion-item>
-          <ion-item>
-            <ion-icon name='ios-pizza-outline' item-start></ion-icon>
-            <h2>房租</h2>
-            <ion-note item-end>
-              -7.00元
-            </ion-note>
-          </ion-item>
-          <ion-item>
-            <ion-icon name='ios-pizza-outline' item-start></ion-icon>
-            <h2>水电煤气费</h2>
-            <ion-note item-end>
-              -7.00元
-            </ion-note>
-          </ion-item>
-          <ion-item>
-            <ion-icon name='ios-pizza-outline' item-start></ion-icon>
-            <h2>零食</h2>
-            <ion-note item-end>
-              -7.00元
-            </ion-note>
-          </ion-item>
-    
-    
-    
-      </ion-list>
+
+    <ion-list-header>
+      个人预算
+      <ion-note item-end>
+        总消费预算：{{budgetsTotal}}元
+      </ion-note>
+    </ion-list-header>
+
+    <ion-item *ngFor="let budget of budgets">
+      <h2>{{budget.type}}</h2>
+      <ion-note item-end>
+        -{{budget.money}}元
+      </ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>

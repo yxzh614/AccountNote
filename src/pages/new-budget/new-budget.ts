@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
@@ -14,21 +15,41 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
   templateUrl: 'new-budget.html',
 })
 export class NewBudgetPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController) {
+  bgMoney: string;
+  bgType: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl:ToastController, public http:Http) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewBudgetPage');
   }
 
-  presentToast() {
+  save() {
+    console.log('save budget');
+    this.http.post('http://localhost/accountNoteBackEnd/newBudget', {
+      username: window.localStorage.username,
+      year: (new Date()).getFullYear(),
+      month: (new Date()).getMonth() + 1,
+      type: this.bgType,
+      money: this.bgMoney
+    }).map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      if (res.state === true) {
+        this.presentToast('保存成功');
+        this.navCtrl.pop();
+      } else {  
+        this.presentToast(res.error);
+      }
+    })
+  }
+
+  presentToast(message) {
     let toast = this.toastCtrl.create({
-      message: '保存成功',
+      message: message,
       duration: 1500,
       position: 'top'
     });
     toast.present();
-    this.navCtrl.pop();
   }
 }

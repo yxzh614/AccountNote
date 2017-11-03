@@ -15,32 +15,20 @@
 
 
 <ion-content>
-  <form (submit)="presentToast()">
+  <form>
     <ion-list>
       <ion-item>
         <ion-label floating>金额</ion-label>
-        <ion-input type="number" [(ngModel)]="password" name="bgMoney"></ion-input>
+        <ion-input type="number" [(ngModel)]="bgMoney" name="bgMoney"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>种类</ion-label>
-        <ion-select name="bgType" [(ngModel)]="gaming" interface="popover">
-          <ion-option value="nes">餐饮</ion-option>
-          <ion-option value="n64">零食</ion-option>
-          <ion-option value="ps">购物</ion-option>
-          <ion-option value="genesis">住房</ion-option>
-          <ion-option value="saturn">交通</ion-option>
-          <ion-option value="3">娱乐</ion-option>
-          <ion-option value="4">学习</ion-option>
-          <ion-option value="5">通讯</ion-option>
-          <ion-option value="fg">医疗</ion-option>
-          <ion-option value="a">旅行</ion-option>
-          <ion-option value="d">投资</ion-option>
-        </ion-select>
+        <ion-label floating>种类</ion-label>
+        <ion-input name="bgType" [(ngModel)]="bgType" name="bgType"></ion-input>
       </ion-item>
 
       <div padding>
-        <button ion-button color="primary" block>保存</button>
+        <button ion-button color="primary" block (click)="save()">保存</button>
       </div>
     </ion-list>
   </form>

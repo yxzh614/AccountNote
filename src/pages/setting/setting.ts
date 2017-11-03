@@ -27,6 +27,9 @@ export class SettingPage {
     this.navCtrl.push(ChangePasswordPage);
   }
   logout() {
+    window.localStorage.username = '';
+    window.localStorage.password = '';
+    this.navCtrl.popToRoot();
     this.navCtrl.push(LoginPage);
   }
 }

@@ -18,12 +18,18 @@ export class LoginPage {
   public loginAccount: Account;
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, public http: Http) {
     this.loginAccount = {
-      username: 'admin',
-      password: '123123'
+      username: "",
+      password: ""
     }
   }
 
   ionViewDidLoad() {
+    if(window.localStorage.username && window.localStorage.password) {
+      this.loginAccount = {
+        username: window.localStorage.username,
+        password: window.localStorage.password
+      }
+    }
     console.log('ionViewDidLoad LoginPage');    
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
@@ -49,23 +55,39 @@ export class LoginPage {
     toast.present();
   }
   login() {
-    this.http.post('http://localhost/accountNote/login.php', JSON.stringify({
+    this.http.post('http://localhost/accountNoteBackEnd/login', {
       username: this.loginAccount.username,
       password: this.loginAccount.password
-    }))
+    })
     .map(res => res.json())
     .subscribe(res => {
       console.log(res);
       if (res.state === true) {
         this.presentToast('登录成功');
-        this.navCtrl.pop({animate: false});
+        window.localStorage.username = this.loginAccount.username;
+        window.localStorage.password = this.loginAccount.password;
+        this.navCtrl.pop();
       } else {  
         this.presentToast(res.error);
       }
     })
   }
   signup() {
-    this.presentToast('注册成功');
-    this.navCtrl.pop();
+    console.log('save budget');
+    this.http.post('http://localhost/accountNoteBackEnd/signup', {
+      username: this.loginAccount.username,
+      password: this.loginAccount.password
+    }).map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      if (res.state === true) {
+        this.presentToast('注册成功');
+        window.localStorage.username = this.loginAccount.username;
+        window.localStorage.password = this.loginAccount.password;
+        this.navCtrl.pop();
+      } else {
+        this.presentToast(res.error);
+      }
+    })
   }
 }

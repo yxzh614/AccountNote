@@ -15,7 +15,7 @@ export class BillProvider {
   constructor(public http: Http) {
   }
   public test() {
-    this.http.get('http://localhost/accountNote/get')
+    this.http.get('http://localhost/accountNoteBackEnd/get')
     .map(res => res.json())
     .subscribe(str => console.log(str))
   }
