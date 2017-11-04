@@ -23,6 +23,9 @@ export class HomePage {
     console.log('enter home');
     this.month = 0;
     this.billList = [];
+    if(!window.localStorage.username) {
+      window.localStorage.username = '';
+    }
     this.getNextDayBillList(this.month);
   }
   getNextDayBillList(monthParse) {

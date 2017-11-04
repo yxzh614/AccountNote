@@ -7,12 +7,12 @@
 <ion-header>
 
   <ion-navbar color="header">
-    <ion-buttons start *ngIf='!isLastMonth'>
+    <ion-buttons start *ngIf='monthChange'>
       <button ion-button icon-only (click)="lastMonthBill()">
         <ion-icon name="arrow-dropleft"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>统计</ion-title>
+    <ion-title>{{title}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="nextMonthBill()">
         <ion-icon name="arrow-dropright"></ion-icon>
@@ -26,9 +26,9 @@
 <ion-content>
   <div #container class="div-charts" style="width: 100%;height:70%;"></div>
   <ion-list-header>
-    本月消费
+    支出/预算
     <ion-note item-end>
-      {{monthTotalCost}}元
+      {{monthTotalCost}}/{{monthYusuan}}元
     </ion-note>
   </ion-list-header>
 

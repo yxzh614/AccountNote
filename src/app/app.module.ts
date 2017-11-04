@@ -15,8 +15,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {ChartModule} from "angular2-highcharts";
-import { HighchartsStatic } from '../../node_modules/._angular2-highcharts@0.5.5@angular2-highcharts/dist/HighchartsService';
+// import {ChartModule} from "angular2-highcharts";
+// import { HighchartsStatic } from '../../node_modules/._angular2-highcharts@0.5.5@angular2-highcharts/dist/HighchartsService';
 import { BillProvider } from '../providers/bill/bill';
 import { HttpModule } from '@angular/http';
 @NgModule({
@@ -26,7 +26,7 @@ import { HttpModule } from '@angular/http';
     TabsPage,CountPage,UserCenterPage,SettingPage,NewBudgetPage,NewBillPage,ChangePasswordPage,LoginPage
   ],
   imports: [
-    BrowserModule,ChartModule,HttpModule,
+    BrowserModule,HttpModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     })
@@ -40,7 +40,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},HighchartsStatic,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     BillProvider
   ]
 })
